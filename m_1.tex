@@ -1,0 +1,102 @@
+% !TEX encoding = UTF-8 Unicode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template graphical model %
+% Author: Tom Lodewyckx    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% 0. Begin document
+%%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+\usepackage[paperwidth=4.5in, paperheight=3in]{geometry}
+\usepackage{pst-all}
+\usepackage{com.braju.graphicalmodels}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{anyfontsize}
+\usepackage{t1enc}
+
+\catcode`\@=11%
+\pagestyle{empty}
+
+\begin{document}
+\TeXtoEPS
+\psset{unit=12mm,arrowscale=3}
+\SpecialCoor
+
+
+% 1. Grid
+%%%%%%%%%
+
+\begin{pspicture}(2.25,0)(12,4)
+%\showgrid
+
+
+% 2. Nodes
+%%%%%%%%%%        
+            
+%\rput(4,5.5){\GM@node[nodeSize=12.5mm,
+%					%observed=true,
+%					observedColor=lightgray,
+%					%query=true
+%					]{kappa}}
+%           \GM@label[offset=-2mm]{kappa}{\fontsize{20}{50}$\kappa$}
+%\rput(6,5.5){\GM@node[nodeSize=12.5mm,
+%					%observed=true,
+%					observedColor=lightgray,
+%					%query=true
+%					]{lambda}}
+%           \GM@label[offset=-2mm]{lambda}{\fontsize{20}{50}$\lambda$}
+           
+\rput(2,4.5){\GM@node[nodeSize=15mm,
+					%observed=true,
+					observedColor=lightgray,
+					%query=true
+					]{lambda}}
+           \GM@label[offset=-3.5mm]{lambda}{\fontsize{25}{50}$\lambda_p$}
+        
+%\rput(8,3.5){\GM@node[nodeSize=12.5mm,
+%					observed=true,
+%					observedColor=lightgray,
+%%					query=true
+%					]{t}}
+%           \GM@label[offset=-2mm]{t}{\fontsize{20}{50}$t_{j}$}
+
+\rput(2,2){\GM@node[nodeSize=15mm,
+					observed=true,
+					observedColor=lightgray,
+					query=true
+					]{c}}
+           \GM@label[offset=-4.5mm]{c}{\fontsize{25}{50}$c_{fp}$}   
+           
+           
+% 3. Arrows
+%%%%%%%%%%%
+
+
+\ncline[arrows=->]{lambda}{c}
+
+% 4. Plates
+%%%%%%%%%%%
+
+
+\rput(.8,.75){\GM@plate[plateLabelPos=br]{2.4}{2.7}{\fontsize{13}{50}$f\; \mathrm{fiestas}$}}
+\rput(.5,.25){\GM@plate[plateLabelPos=br]{3}{5.25}{\fontsize{13}{50}$p\; \mathrm{personas}$}}
+
+%\rput(3.5,-.5){\GM@plate[plateLabelPos=br]{5.5}{5}{\fontsize{13}{50}$t\; \mathrm{tamanos}$}}
+
+
+% 5. Model specification
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\rput(3.5,3){\pnode{equation}}\GM@label{equation}{\fontsize{20}{50}$\lambda_p \sim \mathrm{Uniforme}\bigl(0,50\bigr)$}
+
+\rput(3.5,2){\pnode{equation}}\GM@label{equation}{\fontsize{20}{50}$c_{fp} \sim \mathrm{Poisson}\bigl(\lambda_p\bigr)$}
+
+
+% 6. End document
+%%%%%%%%%%%%%%%%%
+
+\end{pspicture}
+\endTeXtoEPS
+\end{document}

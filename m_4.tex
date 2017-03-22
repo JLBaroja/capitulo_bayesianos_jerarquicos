@@ -1,0 +1,122 @@
+% !TEX encoding = UTF-8 Unicode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template graphical model %
+% Author: Tom Lodewyckx    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% 0. Begin document
+%%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+\usepackage[paperwidth=6.75in, paperheight=4in]{geometry}
+\usepackage{pst-all}
+\usepackage{com.braju.graphicalmodels}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{anyfontsize}
+\usepackage{t1enc}
+
+\catcode`\@=11%
+\pagestyle{empty}
+
+\begin{document}
+\TeXtoEPS
+\psset{unit=12mm,arrowscale=3}
+\SpecialCoor
+
+
+% 1. Grid
+%%%%%%%%%
+
+\begin{pspicture}(0,0)(12,6)
+%\showgrid
+
+
+% 2. Nodes
+%%%%%%%%%%        
+            
+\rput(1,6.75){\GM@node[nodeSize=15mm,
+					%observed=true,
+					observedColor=lightgray,
+					%query=true
+					]{mu_theta}}
+           \GM@label[offset=-4mm]{mu_theta}{\fontsize{25}{50}$\mu^\theta$}
+           
+\rput(3,6.75){\GM@node[nodeSize=15mm,
+					%observed=true,
+					observedColor=lightgray,
+					%query=true
+					]{sigma_theta}}
+           \GM@label[offset=-4mm]{sigma_theta}{\fontsize{25}{50}$\sigma^\theta$}
+           
+\rput(2,4.5){\GM@node[nodeSize=15mm,
+					%observed=true,
+					observedColor=lightgray,
+					%query=true
+					]{theta}}
+           \GM@label[offset=-3.5mm]{theta}{\fontsize{25}{50}$\theta_p$}
+           
+\rput(-.5,4.5){\GM@node[nodeSize=15mm,
+					%observed=true,
+					observedColor=lightgray,
+					%query=true
+					]{lambda_n}}
+           \GM@label[offset=-3.5mm]{lambda_n}{\fontsize{25}{50}$\lambda^n$}
+           
+\rput(-.5,2){\GM@node[nodeSize=15mm,
+					%observed=true,
+					observedColor=lightgray,
+					query=true
+					]{n}}
+           \GM@label[offset=-3.5mm]{n}{\fontsize{25}{50}$n_f$}
+
+\rput(2,2){\GM@node[nodeSize=15mm,
+					observed=true,
+					observedColor=lightgray,
+					query=true
+					]{c}}
+           \GM@label[offset=-4.5mm]{c}{\fontsize{25}{50}$c_{fp}$}   
+           
+           
+% 3. Arrows
+%%%%%%%%%%%
+
+\ncline[arrows=->]{mu_theta}{theta}
+\ncline[arrows=->]{sigma_theta}{theta}
+\ncline[arrows=->]{lambda_n}{n}
+\ncline[arrows=->]{theta}{c}
+\ncline[arrows=->]{n}{c}
+
+
+% 4. Plates
+%%%%%%%%%%%
+
+
+\rput(-1.5,.75){\GM@plate[plateLabelPos=br]{4.6}{2.7}{\fontsize{13}{50}$f\; \mathrm{fiestas}$}}
+\rput(.7,.25){\GM@plate[plateLabelPos=br]{2.8}{5.5}{\fontsize{13}{50}$p\; \mathrm{personas}$}}
+
+%\rput(3.5,-.5){\GM@plate[plateLabelPos=br]{5.5}{5}{\fontsize{13}{50}$t\; \mathrm{tamanos}$}}
+
+
+% 5. Model specification
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\rput(3.5,5){\pnode{equation}}\GM@label{equation}{\fontsize{20}{50}$\sigma^\theta \sim \mathrm{Uniforme}\bigl(0,20\bigr)$}
+
+\rput(3.5,6){\pnode{equation}}\GM@label{equation}{\fontsize{20}{50}$\mu^\theta \sim \mathrm{Uniforme}\bigl(0,1\bigr)$}
+
+\rput(3.5,3){\pnode{equation}}\GM@label{equation}{\fontsize{20}{50}$\theta_p \sim \mathrm{Beta}\bigl(\mu^\theta/{\sigma^\theta}^2,(1-\mu^\theta)/{\sigma^\theta}^2\bigr)$}
+
+\rput(3.5,4){\pnode{equation}}\GM@label{equation}{\fontsize{20}{50}$\lambda^n \sim \mathrm{Uniforme}\bigl(0,60\bigr)$}
+
+\rput(3.5,2){\pnode{equation}}\GM@label{equation}{\fontsize{20}{50}$n_f \sim \mathrm{Poisson}\bigl(\lambda^n\bigr)$}
+
+\rput(3.5,1){\pnode{equation}}\GM@label{equation}{\fontsize{20}{50}$c_{fp} \sim \mathrm{Binomial}\bigl(\theta_p,n_f\bigr)$}
+
+
+% 6. End document
+%%%%%%%%%%%%%%%%%
+
+\end{pspicture}
+\endTeXtoEPS
+\end{document}

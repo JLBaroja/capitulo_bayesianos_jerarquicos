@@ -1,0 +1,12 @@
+*.DS_Store
+*._.DS_Store
+*.Rhistory
+*.aux
+*.dvi
+*.log
+*.gz
+*.docx
+**redictamendellibro
+**ChapterCode_GIST.R
+**ModelosBayesianosJerarquicos_LuisBaroja_eng.pdf
+**ModelosBayesianosJerarquicos_LuisBaroja_eng.tex
